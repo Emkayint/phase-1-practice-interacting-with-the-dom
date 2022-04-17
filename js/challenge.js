@@ -8,15 +8,18 @@ function counterFunc(){
     counter.innerHTML = counterValue += 1;
 }
 
-setInterval(counterFunc, 1000)
+let intervals = setInterval(counterFunc, 1000)
 
 
 // Manually add counter 
 let add = document.querySelector("#plus")
 let subtract = document.querySelector("#minus")
 let heartbtn = document.querySelector("#heart")
+let pausebtn = document.querySelector("#pause")
+
 add.addEventListener("click", addManually)
 subtract.addEventListener('click', subtractManualy)
+pausebtn.addEventListener('click', btnCall);
 
 function addManually(){
     counter.innerHTML = counterValue +=1;
@@ -81,4 +84,27 @@ function getComment(e){
     p.innerHTML = `${myInput.value}`
     comments.appendChild(p)
     myInput.value = "";
+}
+
+function btnCall(){
+    if(pausebtn.innerText === "pause"){
+        ResetIntervals()
+        add.setAttribute('disabled', "")
+        subtract.setAttribute('disabled', "")
+        heartbtn.setAttribute('disabled', "")
+        pausebtn.innerHTML = 'resume'
+    }
+    else if(pausebtn.innerHTML === 'resume'){
+        ResetIntervals()
+        add.removeAttribute('disabled', "")
+        subtract.removeAttribute('disabled', "")
+        heartbtn.removeAttribute('disabled', "")
+        pausebtn.innerHTML = 'pause'
+        intervals = setInterval(counterFunc, 1000)
+        
+    }
+}
+
+function ResetIntervals(){
+    clearInterval(intervals)
 }
