@@ -66,3 +66,19 @@ heartbtn.addEventListener('click', callCounter)
 // } else if(counter === counterValue - 1) {
 //     console.log(anArray[anArray.length-1])
 // }
+
+
+//get comments
+
+let myForm = document.querySelector("form");
+myForm.addEventListener("submit", getComment)
+let myInput = document.querySelector("#comment-input");
+let comments = document.querySelector('#list')
+
+function getComment(e){
+    e.preventDefault()
+    let p = document.createElement('p');
+    p.innerHTML = `${myInput.value}`
+    comments.appendChild(p)
+    myInput.value = "";
+}
